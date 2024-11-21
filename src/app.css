@@ -1,0 +1,27 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+    html{
+        scrollbar-gutter: stable;
+    }
+	.container {
+		max-width: 1000px !important;
+	}
+	section {
+		max-width: 1000px;
+		margin-inline: auto;
+
+		@apply mb-32 max-lg:mb-20 max-md:mb-16;
+	}
+	.btn {
+		@apply bg-zinc-900 text-zinc-50 hover:bg-zinc-900/90 inline-flex h-9 items-center justify-center whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium shadow transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50;
+	}
+	.btn-secondary {
+		@apply bg-zinc-100 text-zinc-900/90 hover:bg-zinc-100/80 inline-flex h-9 items-center justify-center whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50;
+	}
+	.btn-destructive {
+		@apply bg-red text-zinc-50 hover:bg-red/80 inline-flex h-9 items-center justify-center whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50;
+	}
+}
