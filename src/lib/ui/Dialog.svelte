@@ -12,12 +12,13 @@
 		btnText,
 		action,
 		passedForm = $bindable(),
-		type
+		type,
+		modalActionType
 	} = $props();
 
 	const { form, errors, enhance, message } = passedForm;
 
-	$inspect($form);
+	$inspect(modalActionType);
 
 	$effect(() => {
 		$form.name = name;
@@ -75,12 +76,29 @@
 					class="text-right text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 					for="id">ID</label
 				>
-				<input
-					bind:value={$form.id}
-					name="id"
-					class=" placeholder:zinc-900 w-full rounded border-zinc-500/20 shadow-sm focus:border-zinc-500/20 focus:ring focus:ring-zinc-100 focus:ring-opacity-50"
-					id="id"
-				/>
+				{#if modalActionType === 'edit'}
+					<input
+						bind:value={$form.id}
+                        type="hidden"
+						name="id"
+						class="placeholder:zinc-900 w-full rounded border-zinc-500/20 shadow-sm focus:border-zinc-500/20 focus:ring focus:ring-zinc-100 focus:ring-opacity-50 disabled:bg-zinc-100"
+						id="id"
+					/>
+                    <input
+						bind:value={$form.id}
+						name="id1"
+						class="placeholder:zinc-900 w-full rounded border-zinc-500/20 shadow-sm focus:border-zinc-500/20 focus:ring focus:ring-zinc-100 focus:ring-opacity-50 disabled:bg-zinc-100"
+						id="id1"
+						disabled={modalActionType === 'edit'}
+					/>
+                {:else}
+					<input
+						bind:value={$form.id}
+						name="id"
+						class="placeholder:zinc-900 w-full rounded border-zinc-500/20 shadow-sm focus:border-zinc-500/20 focus:ring focus:ring-zinc-100 focus:ring-opacity-50 disabled:bg-zinc-100"
+						id="id"
+					/>
+				{/if}
 
 				{#if $errors.id}
 					<div></div>

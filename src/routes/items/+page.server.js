@@ -58,6 +58,8 @@ export const actions = {
 	editItem: async ({ request }) => {
 		const form = await superValidate(request, zod(itemSchema));
 
+
+		console.log(form)
 		if (!form.valid) {
 			return fail(400, { form });
 		}

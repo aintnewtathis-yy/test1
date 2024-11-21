@@ -38,6 +38,7 @@
 	let modalBtnText = $state('');
 	let modalAction = $state('');
 	let modalForm = $state(editForm);
+	let modalActionType = $state('edit');
 </script>
 
 <section class="mb-28">
@@ -46,9 +47,9 @@
 			<h1 class="text-2xl">Товары</h1>
 			<div class="flex flex-col gap-3">
 				<!-- svelte-ignore a11y_consider_explicit_label -->
-				<div class="flex items-center gap-3 justify-between max-md:flex-col max-md:items-start">
+				<div class="flex items-center justify-between gap-3 max-md:flex-col max-md:items-start">
 					<input
-						class=" max-md:w-full placeholder:zinc-900 rounded border-zinc-500/20 shadow-sm focus:border-zinc-500/20 focus:ring focus:ring-zinc-100 focus:ring-opacity-50"
+						class=" placeholder:zinc-900 rounded border-zinc-500/20 shadow-sm focus:border-zinc-500/20 focus:ring focus:ring-zinc-100 focus:ring-opacity-50 max-md:w-full"
 						placeholder="Поиск"
 						type="search"
 						bind:value={searchTerm}
@@ -64,6 +65,7 @@
 							modalBtnText = 'Создать';
 							modalAction = '?/addProduct';
 							modalForm = addForm;
+							modalActionType = 'add';
 						}}
 					>
 						Добавить товар
@@ -101,10 +103,12 @@
 						<tbody class="[&amp;_tr:last-child]:border-0">
 							{#each filteredProducts as product}
 								<tr class=" border-b border-zinc-500/20 transition-colors">
-									<td class="p-4 whitespace-nowrap align-middle">{product.name}</td>
+									<td class="whitespace-nowrap p-4 align-middle">{product.name}</td>
 									<td class="whitespace-nowrap p-4 align-middle">{product.id}</td>
-									<td class="p-4 text-right whitespace-nowrap align-middle font-medium">{product.price}</td>
-									<td class="p-4 text-right whitespace-nowrap align-middle">
+									<td class="whitespace-nowrap p-4 text-right align-middle font-medium"
+										>{product.price}</td
+									>
+									<td class="whitespace-nowrap p-4 text-right align-middle">
 										<!-- svelte-ignore a11y_consider_explicit_label -->
 										<div class="flex justify-end gap-2">
 											<button
@@ -116,6 +120,7 @@
 													modalBtnText = 'Сохранить';
 													modalAction = '?/editProduct';
 													modalForm = editForm;
+													modalActionType = 'edit';
 												}}
 												class="btn-secondary aspect-square p-1"
 											>
@@ -203,6 +208,7 @@
 		action={modalAction}
 		passedForm={modalForm}
 		type="product"
+        modalActionType
 	/>
 {/if}
 

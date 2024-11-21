@@ -36,6 +36,7 @@
 	let modalBtnText = $state('');
 	let modalAction = $state('');
 	let modalForm = $state(editForm);
+	let modalActionType = $state('edit');
 </script>
 
 <section class="mb-28">
@@ -62,6 +63,7 @@
 							modalBtnText = 'Создать';
 							modalAction = '?/addItem';
 							modalForm = addForm;
+                            modalActionType = 'add';
 						}}
 					>
 						Добавить продукт
@@ -114,6 +116,7 @@
 													modalBtnText = 'Сохранить';
 													modalAction = '?/editItem';
 													modalForm = editForm;
+													modalActionType = 'edit';
 												}}
 												class="btn-secondary aspect-square p-1"
 											>
@@ -201,7 +204,7 @@
 		action={modalAction}
 		passedForm={modalForm}
 		type="item"
-		;
+		{modalActionType}
 	/>
 {/if}
 
